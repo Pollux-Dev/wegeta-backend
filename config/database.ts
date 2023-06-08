@@ -60,8 +60,8 @@ export default ({ env }) => {
         user: env('DATABASE_USERNAME', 'strapi'),
         password: env('DATABASE_PASSWORD', 'strapi'),
 
-        // ssl: { rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), },
-        ssl: false,
+        ssl: { rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false), },
+        // ssl: false,
 
         /*ssl: env.bool('DATABASE_SSL', false) && {
           key: env('DATABASE_SSL_KEY', undefined),
