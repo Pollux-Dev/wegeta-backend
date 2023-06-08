@@ -2,6 +2,8 @@ import path from 'path';
 
 export default ({ env }) => {
   const client = env('DATABASE_CLIENT', 'postgres');
+  const host = env('DATABASE_HOST_INTERNAL', 'postgres');
+  console.log('THIS IS THE HOST ------- : ', host)
 
   const connections = {
     mysql: {
