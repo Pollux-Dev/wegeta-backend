@@ -8,8 +8,9 @@ export default [
         directives: {
           'connect-src': ["'self'", 'https:'],
           'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
-          'img-src': ["'self'", 'data:', 'blob:', 'strapi.io', 'res.cloudinary.com', ],
-          'media-src': ["'self'", 'data:', 'blob:', 'cdn.jsdelivr.net', 'strapi.io', 'res.cloudinary.com'],
+          'img-src': ["'self'", 'data:', 'blob:', 'strapi.io', 'res.cloudinary.com', 'https://market-assets.strapi.io/', ],
+          'style-src': ["'self'", '*', 'data:', 'blob:', "'unsafe-inline'", 'strapi.io', 'http://cdn.jsdelivr.net', ],
+          'media-src': ["'self'", 'data:', 'blob:', 'cdn.jsdelivr.net', 'http://cdn.jsdelivr.net', 'strapi.io', 'res.cloudinary.com'],
           upgradeInsecureRequests: null,
         },
       },

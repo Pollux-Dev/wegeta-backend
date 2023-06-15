@@ -2,11 +2,11 @@ module.exports = ({ env }) => ({
   // ...
   upload: {
     config: {
-      provider: 'cloudinary',
+      provider: "cloudinary",
       providerOptions: {
-        cloud_name: env('CLOUDINARY_NAME'),
-        api_key: env('CLOUDINARY_KEY'),
-        api_secret: env('CLOUDINARY_SECRET'),
+        cloud_name: env("CLOUDINARY_NAME"),
+        api_key: env("CLOUDINARY_KEY"),
+        api_secret: env("CLOUDINARY_SECRET"),
       },
       actionOptions: {
         upload: {},
@@ -14,15 +14,18 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  ezforms:{
+  ezforms: {
     enabed: true,
-    config:{
+    config: {
       captchaProvider: {
-        name: 'none',
+        name: "none",
       },
       notificationProviders: [],
       enableFormName: true,
-    }
-  }
-  // ...
+    },
+  },
+  todo: {
+    enabled: true,
+    resolve: "./src/plugins/todo",
+  }, // ...
 });
