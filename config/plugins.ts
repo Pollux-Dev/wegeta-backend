@@ -14,5 +14,15 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  ezforms:{
+    enabed: true,
+    config:{
+      captchaProvider: {
+        name: 'none',
+      },
+      notificationProviders: [],
+      enableFormName: true,
+    }
+  }
   // ...
 });

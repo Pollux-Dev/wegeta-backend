@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_form_textfields",
+  "info": {
+    "displayName": "TextField",
+    "description": "",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "variants": {
+      "type": "enumeration",
+      "enum": [
+        "outlined",
+        "standard"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "email",
+        "text",
+        "password",
+        "number"
+      ],
+      "required": true
+    },
+    "placeholder": {
+      "type": "string"
+    }
+  }
+}

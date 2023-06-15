@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_form_checkboxes",
+  "info": {
+    "displayName": "checkbox",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "checkBoxItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "form.check-box-item"
+    },
+    "label": {
+      "type": "string"
+    },
+    "placeholder": {
+      "type": "string"
+    }
+  }
+}

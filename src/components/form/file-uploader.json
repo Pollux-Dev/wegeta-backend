@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_form_file_uploaders",
+  "info": {
+    "displayName": "File Uploader",
+    "icon": "file",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

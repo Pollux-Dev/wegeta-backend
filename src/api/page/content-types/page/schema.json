@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "publish_at": {
+      "pluginOptions": {},
+      "type": "datetime"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "form": {
+      "type": "dynamiczone",
+      "components": [
+        "form.checkbox",
+        "form.select",
+        "form.textfield",
+        "form.file-uploader"
+      ],
+      "required": true
+    }
+  }
+}

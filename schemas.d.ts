@@ -21,8 +21,9 @@ import {
   RichTextAttribute,
   UIDAttribute,
   MediaAttribute,
-  SingleTypeSchema,
   ComponentAttribute,
+  SingleTypeSchema,
+  DynamicZoneAttribute,
   ComponentSchema,
 } from '@strapi/strapi';
 
@@ -496,6 +497,49 @@ export interface PluginUploadFolder extends CollectionTypeSchema {
   };
 }
 
+export interface PluginI18NLocale extends CollectionTypeSchema {
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: StringAttribute &
+      SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: StringAttribute & UniqueAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface PluginUsersPermissionsPermission extends CollectionTypeSchema {
   info: {
     name: 'permission';
@@ -643,49 +687,6 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
-export interface PluginI18NLocale extends CollectionTypeSchema {
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: StringAttribute &
-      SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
-    code: StringAttribute & UniqueAttribute;
-    createdAt: DateTimeAttribute;
-    updatedAt: DateTimeAttribute;
-    createdBy: RelationAttribute<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute;
-    updatedBy: RelationAttribute<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      PrivateAttribute;
-  };
-}
-
 export interface ApiArticleArticle extends CollectionTypeSchema {
   info: {
     singularName: 'article';
@@ -714,6 +715,7 @@ export interface ApiArticleArticle extends CollectionTypeSchema {
       'api::writer.writer'
     >;
     featured: BooleanAttribute & RequiredAttribute & DefaultTo<false>;
+    retry: ComponentAttribute<'retry-btn.retry'>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -832,6 +834,60 @@ export interface ApiHomepageHomepage extends SingleTypeSchema {
   };
 }
 
+export interface ApiPagePage extends CollectionTypeSchema {
+  info: {
+    singularName: 'page';
+    pluralName: 'pages';
+    displayName: 'Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    seo: ComponentAttribute<'shared.seo'>;
+    publish_at: DateTimeAttribute;
+    form: DynamicZoneAttribute<['form.textfield']> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<'api::page.page', 'oneToOne', 'admin::user'> &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<'api::page.page', 'oneToOne', 'admin::user'> &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiPhotoPhoto extends CollectionTypeSchema {
+  info: {
+    singularName: 'photo';
+    pluralName: 'photos';
+    displayName: 'photo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    photo: MediaAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      'api::photo.photo',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      'api::photo.photo',
+      'oneToOne',
+      'admin::user'
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiWriterWriter extends CollectionTypeSchema {
   info: {
     singularName: 'writer';
@@ -869,6 +925,38 @@ export interface ApiWriterWriter extends CollectionTypeSchema {
   };
 }
 
+export interface FormCheckbox extends ComponentSchema {
+  info: {
+    displayName: 'checkbox';
+  };
+  attributes: {
+    name: StringAttribute & RequiredAttribute;
+  };
+}
+
+export interface FormTextfield extends ComponentSchema {
+  info: {
+    displayName: 'textfield';
+    description: '';
+  };
+  attributes: {
+    label: StringAttribute & RequiredAttribute;
+    variants: EnumerationAttribute<['outlined', 'standard']>;
+    type: EnumerationAttribute<['email', 'text', 'password', 'number']> &
+      RequiredAttribute;
+    placeholder: StringAttribute;
+  };
+}
+
+export interface RetryBtnRetry extends ComponentSchema {
+  info: {
+    displayName: 'retry';
+  };
+  attributes: {
+    retrytxt: StringAttribute;
+  };
+}
+
 export interface SectionsHero extends ComponentSchema {
   info: {
     name: 'Hero';
@@ -903,15 +991,20 @@ declare global {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
       'api::article.article': ApiArticleArticle;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::homepage.homepage': ApiHomepageHomepage;
+      'api::page.page': ApiPagePage;
+      'api::photo.photo': ApiPhotoPhoto;
       'api::writer.writer': ApiWriterWriter;
+      'form.checkbox': FormCheckbox;
+      'form.textfield': FormTextfield;
+      'retry-btn.retry': RetryBtnRetry;
       'sections.hero': SectionsHero;
       'shared.seo': SharedSeo;
     }

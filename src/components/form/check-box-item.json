@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_form_check_box_items",
+  "info": {
+    "displayName": "Field-Item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    }
+  }
+}
