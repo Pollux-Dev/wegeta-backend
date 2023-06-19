@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "singularName": "message",
+    "pluralName": "messages",
+    "displayName": "message"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "attributes": {
+    "messageType": {
+      "type": "enumeration",
+      "enum": [
+        "sms",
+        "email"
+      ]
+    },
+    "to": {
+      "type": "string"
+    },
+    "message": {
+      "type": "richtext"
+    },
+    "subject": {
+      "type": "string"
+    }
+  }
+}

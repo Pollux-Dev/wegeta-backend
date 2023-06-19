@@ -19,9 +19,7 @@ export default {
   },
 
   async create(ctx) {
-
     // console.log('controller create a todo --> : ', ctx)
-
 
     try {
       ctx.body = await strapi

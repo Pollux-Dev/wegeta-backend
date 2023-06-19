@@ -5,7 +5,7 @@ export default [
     handler: "myController.index",
     config: {
       policies: [],
-      auth: false
+      auth: false,
     },
   },
 
@@ -15,6 +15,7 @@ export default [
     handler: "todo.find",
     config: {
       policies: [],
+      auth: false,
     },
   },
 
@@ -54,3 +55,8 @@ export default [
     },
   },
 ];
+
+// kill running port in arch linux
+// sudo lsof -i :1337
+// kill -9 <PID>
+// fuser -k 1337/tcp

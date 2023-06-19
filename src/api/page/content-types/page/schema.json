@@ -4,7 +4,7 @@
   "info": {
     "singularName": "page",
     "pluralName": "pages",
-    "displayName": "Page",
+    "displayName": "Forms",
     "description": ""
   },
   "options": {
@@ -24,7 +24,7 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "title"
+      "required": true
     },
     "form": {
       "type": "dynamiczone",
@@ -34,6 +34,11 @@
         "form.textfield",
         "form.file-uploader"
       ],
+      "required": true
+    },
+    "link": {
+      "type": "customField",
+      "customField": "plugin::generated-page-link.page-link",
       "required": true
     }
   }

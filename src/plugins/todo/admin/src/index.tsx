@@ -19,7 +19,7 @@ export default {
         defaultMessage: name,
       },
       Component: async () => {
-        const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
+        const component = await import(/* webpackChunkName: "sms-service-component" */ './pages/App');
 
         return component;
       },

@@ -3,11 +3,22 @@
   "compilerOptions": {
     "target": "ESNext",
     "strict": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
   "include": [
     "admin",
-    "custom.d.ts"
+    "type"
   ],
   "exclude": [
     "node_modules/",

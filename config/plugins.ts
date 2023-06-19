@@ -24,8 +24,30 @@ module.exports = ({ env }) => ({
       enableFormName: true,
     },
   },
+
   todo: {
     enabled: true,
     resolve: "./src/plugins/todo",
-  }, // ...
+  },
+
+  "generated-page-link": {
+    enabled: true,
+    resolve: "./src/plugins/generated-page-link",
+  },
+
+  "sms-service": {
+    enabled: true,
+    resolve: "./src/plugins/sms-service",
+  },
+
+  documentation: {
+    enabled: false,
+    config: {
+      "x-strapi-config": {
+        plugins: ["todo", "users-permissions"], // Custom
+      }
+    },
+  },
+
+  // ...
 });
