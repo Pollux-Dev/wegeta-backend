@@ -16,7 +16,9 @@
       "pluginOptions": {},
       "type": "string",
       "required": true,
-      "unique": true
+      "unique": true,
+      "maxLength": 26,
+      "minLength": 5
     },
     "publish_at": {
       "pluginOptions": {},
@@ -32,14 +34,21 @@
         "form.checkbox",
         "form.select",
         "form.textfield",
-        "form.file-uploader"
+        "form.file-uploader",
+        "form.radiobox"
       ],
-      "required": true
+      "required": true,
+      "min": 1
     },
     "link": {
       "type": "customField",
       "customField": "plugin::generated-page-link.page-link",
-      "required": true
+      "required": false
+    },
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "maxLength": 170
     }
   }
 }

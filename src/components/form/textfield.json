@@ -7,17 +7,6 @@
   },
   "options": {},
   "attributes": {
-    "label": {
-      "type": "string",
-      "required": true
-    },
-    "variants": {
-      "type": "enumeration",
-      "enum": [
-        "outlined",
-        "standard"
-      ]
-    },
     "type": {
       "type": "enumeration",
       "enum": [
@@ -29,7 +18,27 @@
       "required": true
     },
     "placeholder": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 15
+    },
+    "label": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.label-20-max-char",
+      "required": true
+    },
+    "multiline": {
+      "type": "boolean",
+      "default": false
+    },
+    "name": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.label-20-max-no-space"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

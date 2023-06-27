@@ -1,7 +1,8 @@
 {
-  "collectionName": "components_form_checkboxes",
+  "collectionName": "components_form_radioboxes",
   "info": {
-    "displayName": "Checkbox",
+    "displayName": "Radiobox",
+    "icon": "command",
     "description": ""
   },
   "options": {},
@@ -13,15 +14,10 @@
       "required": true,
       "min": 2
     },
-    "placeholder": {
-      "type": "string",
-      "required": false,
-      "maxLength": 20
-    },
     "label": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.label-20-max-char",
+      "component": "form.check-box-item",
       "required": true
     },
     "name": {

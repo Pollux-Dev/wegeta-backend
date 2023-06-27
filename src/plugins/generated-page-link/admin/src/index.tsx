@@ -31,6 +31,7 @@ export default {
       ],
     });*/
 
+
     app.customFields.register({
       name: 'page-link',
       pluginId: pluginId,

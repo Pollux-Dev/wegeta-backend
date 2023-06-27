@@ -7,21 +7,30 @@
   },
   "options": {},
   "attributes": {
-    "label": {
-      "type": "string",
-      "required": true
-    },
-    "name": {
-      "type": "string",
-      "required": true
-    },
     "placeholder": {
-      "type": "string"
+      "type": "string",
+      "maxLength": 15
     },
-    "SelectItems": {
+    "items": {
       "type": "component",
       "repeatable": true,
-      "component": "form.check-box-item"
+      "component": "form.check-box-item",
+      "min": 2,
+      "required": true
+    },
+    "label": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.label-20-max-char"
+    },
+    "name": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.label-20-max-no-space"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

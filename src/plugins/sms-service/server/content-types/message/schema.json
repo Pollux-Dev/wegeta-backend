@@ -10,6 +10,15 @@
     "draftAndPublish": false,
     "comment": ""
   },
+  "pluginOptions": {
+    "timestamps": true,
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    }
+  },
   "attributes": {
     "messageType": {
       "type": "enumeration",

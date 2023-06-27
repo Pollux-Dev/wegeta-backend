@@ -1,0 +1,10 @@
+{
+  "collectionName": "components_shared_labels",
+  "info": {
+    "displayName": "Label (15 max-char)",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {}
+}

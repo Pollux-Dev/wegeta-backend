@@ -7,19 +7,29 @@
   },
   "options": {},
   "attributes": {
-    "name": {
-      "type": "string",
+    "fileType": {
+      "type": "enumeration",
+      "enum": [
+        "image",
+        "pdf/word",
+        "video"
+      ],
       "required": true
     },
-    "file": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+    "label": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.label-20-max-char",
+      "required": true
+    },
+    "name": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.label-20-max-no-space"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -4,38 +4,43 @@ export default {
 
     const { data } = event.params;
 
-    // return;
-
-    const updatedData = {
-      ...data,
-      link: `localhost:3000/forms/${event.result.id}`,
-    };
+    if (!event.result?.publish_at || !event.result?.link) {
+      return;
+    }
 
     const updated = await strapi.entityService.update(
       "api::page.page",
       event.result.id,
       {
-        params: { id: data.id },
-        data: updatedData,
+        data: {
+          link: `localhost:3000/forms/${event.result.id}`,
+        },
       }
     );
     console.log("updated: ", updated);
   },
 
-  async beforeCreate(event) {
+  async afterUpdate(event) {
     const { data } = event.params;
+    console.log("afterUpdate : ", event);
+    if (event.result?.link) {
+      return;
+    }
 
-    // console.log("Before create:", event.model);
+    if (!event.result?.publishedAt || event.result?.form?.length === 0) {
+      return;
+    }
 
-    /*const updatedData = {
-      ...data,
-      link: `localhost:3000/forms/${data.slug}`,
-    };
+    const updated = await strapi.entityService.update(
+      "api::page.page",
+      event.result.id,
+      {
+        data: {
+          link: `localhost:3000/forms/${event.result.id}`,
+        },
+      }
+    );
 
-    const updated = await strapi.entityService.update("api::page.page", {
-      params: { id: data.id },
-      data: updatedData,
-    });
-    console.log("updated: ", updated);*/
+    console.log("updated data --> : ", updated);
   },
 };

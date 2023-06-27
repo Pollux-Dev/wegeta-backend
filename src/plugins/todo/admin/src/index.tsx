@@ -11,7 +11,7 @@ export default {
   register(app: any) {
 
 
-    app.addMenuLink({
+    /*app.addMenuLink({
       to: `/plugins/${pluginId}`,
       icon: PluginIcon,
       intlLabel: {
@@ -19,7 +19,7 @@ export default {
         defaultMessage: name,
       },
       Component: async () => {
-        const component = await import(/* webpackChunkName: "sms-service-component" */ './pages/App');
+        const component = await import(/!* webpackChunkName: "sms-service-component" *!/ './pages/App');
 
         return component;
       },
@@ -30,7 +30,9 @@ export default {
         //   subject: null,
         // },
       ],
-    });
+    });*/
+
+
     const plugin = {
       id: pluginId,
       initializer: Initializer,

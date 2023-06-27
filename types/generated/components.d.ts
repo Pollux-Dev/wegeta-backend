@@ -7,21 +7,32 @@ export interface FormCheckBoxItem extends Schema.Component {
     description: '';
   };
   attributes: {
-    label: Attribute.String & Attribute.Required;
+    label: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
   };
 }
 
 export interface FormCheckbox extends Schema.Component {
   collectionName: 'components_form_checkboxes';
   info: {
-    displayName: 'checkbox';
+    displayName: 'Checkbox';
     description: '';
   };
   attributes: {
-    name: Attribute.String & Attribute.Required;
-    checkBoxItems: Attribute.Component<'form.check-box-item', true>;
-    label: Attribute.String;
-    placeholder: Attribute.String;
+    checkBoxItems: Attribute.Component<'form.check-box-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 2;
+      }>;
+    placeholder: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    name: Attribute.Component<'shared.label-20-max-char'> & Attribute.Required;
+    label: Attribute.Component<'shared.label-20-max-char'> & Attribute.Required;
   };
 }
 
@@ -33,8 +44,28 @@ export interface FormFileUploader extends Schema.Component {
     description: '';
   };
   attributes: {
-    name: Attribute.String & Attribute.Required;
-    file: Attribute.Media;
+    fileType: Attribute.Enumeration<['image', 'pdf/word', 'video']> &
+      Attribute.Required;
+    name: Attribute.Component<'shared.label'> & Attribute.Required;
+    label: Attribute.Component<'shared.label-20-max-char'> & Attribute.Required;
+  };
+}
+
+export interface FormRadiobox extends Schema.Component {
+  collectionName: 'components_form_radioboxes';
+  info: {
+    displayName: 'Radiobox';
+    icon: 'command';
+    description: '';
+  };
+  attributes: {
+    items: Attribute.Component<'form.check-box-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 2;
+      }>;
+    name: Attribute.Component<'shared.label-20-max-char'> & Attribute.Required;
+    label: Attribute.Component<'form.check-box-item'> & Attribute.Required;
   };
 }
 
@@ -46,9 +77,20 @@ export interface FormSelect extends Schema.Component {
     description: '';
   };
   attributes: {
-    label: Attribute.String & Attribute.Required;
-    name: Attribute.String & Attribute.Required;
-    placeholder: Attribute.String;
+    label: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }>;
+    placeholder: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
     SelectItems: Attribute.Component<'form.check-box-item', true>;
   };
 }
@@ -61,11 +103,18 @@ export interface FormTextfield extends Schema.Component {
     icon: 'layer';
   };
   attributes: {
-    label: Attribute.String & Attribute.Required;
+    label: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
     variants: Attribute.Enumeration<['outlined', 'standard']>;
     type: Attribute.Enumeration<['email', 'text', 'password', 'number']> &
       Attribute.Required;
-    placeholder: Attribute.String;
+    placeholder: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
   };
 }
 
@@ -77,6 +126,36 @@ export interface SectionsHero extends Schema.Component {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
+  };
+}
+
+export interface SharedLabel20MaxChar extends Schema.Component {
+  collectionName: 'components_shared_label_20_max_char_s';
+  info: {
+    displayName: 'Label(20 max-char)';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    text: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+  };
+}
+
+export interface SharedLabel extends Schema.Component {
+  collectionName: 'components_shared_labels';
+  info: {
+    displayName: 'Label (15 max-char)';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    text: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
   };
 }
 
@@ -99,9 +178,12 @@ declare module '@strapi/strapi' {
       'form.check-box-item': FormCheckBoxItem;
       'form.checkbox': FormCheckbox;
       'form.file-uploader': FormFileUploader;
+      'form.radiobox': FormRadiobox;
       'form.select': FormSelect;
       'form.textfield': FormTextfield;
       'sections.hero': SectionsHero;
+      'shared.label-20-max-char': SharedLabel20MaxChar;
+      'shared.label': SharedLabel;
       'shared.seo': SharedSeo;
     }
   }
