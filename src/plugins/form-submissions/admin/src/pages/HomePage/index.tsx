@@ -17,7 +17,6 @@ import { Plus } from "@strapi/icons";
 import TodoCount from "../../components/TodoCount";
 import TodoTable from "../../components/TodoTabel";
 import { Illo } from "../../components/Illo";
-import TodoModal from "../../components/TodoModal";
 import { LoadingIndicatorPage } from "@strapi/helper-plugin";
 import todoRequests from "../../api/todo";
 
@@ -49,6 +48,10 @@ const HomePage = () => {
     if (isLoading === false) setIsLoading(true);
 
     const todo = await todoRequests.getAllTodos();
+    // const pages = await todoRequests.getAllPages();
+
+    // console.log('pages: ', pages)
+
     setTodoData(todo);
     setIsLoading(false);
   };
@@ -64,8 +67,8 @@ const HomePage = () => {
   return (
     <Layout>
       <BaseHeaderLayout
-        title="Todo plugin"
-        subtitle="All your todos in on place"
+        title="Form Submissions"
+        subtitle="All your Form-Submission in on place"
         as="h2"
       />
 
@@ -97,7 +100,6 @@ const HomePage = () => {
           </>
         )}
       </ContentLayout>
-      {showModal && <TodoModal setShowModal={setShowModal} addTodo={addTodo} />}
     </Layout>
   );
 };

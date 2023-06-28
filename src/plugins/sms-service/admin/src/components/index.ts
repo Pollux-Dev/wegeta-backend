@@ -13,13 +13,38 @@ export const SmsType = styled.div`
 `;
 
 export const CardWrapper = styled(Card)`
-  padding: 1rem;
+  padding: 0 1rem;
+
+
+  .tabs {
+    max-width: 20rem;
+    width: 100%;
+    //border: 1px solid #000;
+
+    & > * {
+      height: 100% !important;
+      //border: 1px solid #000;
+    }
+  }
+
+  & .selected {
+    & > div {
+      background-color: rgba(0, 0, 255, 0.05);
+      border: 1px solid rgba(0, 0, 255, 0.09);
+
+    }
+  }
+
+  hr {
+    //border-color: #ffffff;
+  }
 
   & .box {
     display: flex;
     flex-flow: column;
     gap: 2rem;
     //border: 1px solid red;
+
 
     button {
       align-self: flex-start;

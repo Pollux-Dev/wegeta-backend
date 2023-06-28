@@ -49,5 +49,10 @@ module.exports = ({ env }) => ({
     },
   },
 
+  'form-submissions': {
+    enabled: true,
+    resolve: './src/plugins/form-submissions'
+  },
+
   // ...
 });

@@ -85,10 +85,3 @@ export const useHandleFileUpload = (setRecipient: (arg: any) => void) => {
   }
 }
 
-/*export const handleFileUpload = (
-  event: ChangeEvent<HTMLInputElement>,
-  notification: any,
-  setRecipient: (arg: any) => void
-) => {
-
-};*/

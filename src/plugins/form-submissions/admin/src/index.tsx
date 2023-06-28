@@ -9,8 +9,6 @@ const name = pluginPkg.strapi.name;
 
 export default {
   register(app: any) {
-
-
     app.addMenuLink({
       to: `/plugins/${pluginId}`,
       icon: PluginIcon,
@@ -19,7 +17,7 @@ export default {
         defaultMessage: name,
       },
       Component: async () => {
-        const component = await import(/* webpackChunkName: "sms-service-component" */ './pages/App');
+        const component = await import(/* webpackChunkName: "[request]" */ './pages/App');
 
         return component;
       },
@@ -31,8 +29,6 @@ export default {
         // },
       ],
     });
-
-
     const plugin = {
       id: pluginId,
       initializer: Initializer,

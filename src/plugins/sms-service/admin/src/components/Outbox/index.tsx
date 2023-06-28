@@ -10,7 +10,7 @@ import {
   Button,
   ContentLayout,
   EmptyStateLayout,
-  Layout,
+  Box,
 } from "@strapi/design-system";
 import { Plus } from "@strapi/icons";
 
@@ -62,13 +62,7 @@ const HomePage = () => {
   }
 
   return (
-    <Layout>
-      <BaseHeaderLayout
-        title="Todo plugin"
-        subtitle="All your todos in on place"
-        as="h2"
-      />
-
+    <Box>
       <ContentLayout>
         {todoData.length === 0 ? (
           <EmptyStateLayout
@@ -97,8 +91,7 @@ const HomePage = () => {
           </>
         )}
       </ContentLayout>
-      {showModal && <TodoModal setShowModal={setShowModal} addTodo={addTodo} />}
-    </Layout>
+    </Box>
   );
 };
 
