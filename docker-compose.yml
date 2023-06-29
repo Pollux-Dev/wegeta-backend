@@ -12,11 +12,11 @@ services:
 #    env_file: .env
     environment:
 #      DATABASE_CLIENT: ${DATABASE_CLIENT}
-#      DATABASE_NAME: ${DATABASE_NAME}
 #      DATABASE_HOST: postgres
-      POSTGRES_DB: strapi
-      POSTGRES_USER: strapi
-      POSTGRES_PASSWORD: strapi
+      DATABASE_NAME: wegegta
+      POSTGRES_DB: wegegta
+      POSTGRES_USER: wegegta
+      POSTGRES_PASSWORD: wegegta
 
 volumes:
   wegegta-data:

@@ -10,7 +10,8 @@
     "text": {
       "type": "string",
       "maxLength": 20,
-      "minLength": 5
+      "minLength": 5,
+      "required": true
     }
   }
 }

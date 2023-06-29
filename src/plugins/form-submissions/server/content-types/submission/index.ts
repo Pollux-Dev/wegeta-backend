@@ -20,21 +20,25 @@ const schema = {
     },
   },
   attributes: {
-    formName: {
+    formTitle: {
       type: "string",
-      min: 1,
-      max: 50,
       configurable: false,
     },
-    data: {
+    formId: {
+      type: "string",
+      configurable: false,
+    },
+    formData: {
       type: "json",
       configurable: false,
     },
-   /* form: {
-      type: 'relation',
-      relation: 'manyToOne',
-      target: 'page'
-    }*/
+    form: {
+      type: "relation",
+      relation: "manyToOne",
+      target: "api::page.page",
+      // inversedBy: "submissions",
+      configurable: true,
+    },
   },
 };
 

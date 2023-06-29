@@ -21,12 +21,14 @@
     "label": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.label-20-max-char"
+      "component": "shared.label-20-max-char",
+      "required": true
     },
     "name": {
       "type": "component",
       "repeatable": false,
-      "component": "shared.label-20-max-no-space"
+      "component": "shared.label-20-max-no-space",
+      "required": true
     },
     "required": {
       "type": "boolean",

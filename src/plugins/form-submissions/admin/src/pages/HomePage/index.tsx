@@ -17,13 +17,15 @@ import { Plus } from "@strapi/icons";
 import TodoCount from "../../components/TodoCount";
 import TodoTable from "../../components/TodoTabel";
 import { Illo } from "../../components/Illo";
-import { LoadingIndicatorPage } from "@strapi/helper-plugin";
+import { LoadingIndicatorPage, useFetchClient } from "@strapi/helper-plugin";
 import todoRequests from "../../api/todo";
+import { Submissions } from "../../api/submissions";
 
 const HomePage = () => {
   const [todoData, setTodoData] = useState<any>([]);
   const [showModal, setShowModal] = useState<any>(false);
   const [isLoading, setIsLoading] = useState<any>(true);
+  const { get } = useFetchClient();
 
   async function addTodo(data: any) {
     await todoRequests.addTodo(data);
@@ -49,8 +51,36 @@ const HomePage = () => {
 
     const todo = await todoRequests.getAllTodos();
     // const pages = await todoRequests.getAllPages();
+    const pages = await Submissions.get("/api/pages")
+      .then((res) => {
+        if (res.status !== 200) throw new Error("Failed to fetch pages");
 
-    // console.log('pages: ', pages)
+        console.log("res: ", res.data);
+
+        return res.data.data.map(({ id, attributes }: any) => ({
+          id,
+          title: attributes.title,
+          link: attributes.link,
+          publishedAt: attributes.publishedAt,
+        }));
+      })
+      .catch((err) => {
+        console.log("err fetching pages --> : ", err);
+      });
+
+    const submissions = await Submissions.get("/form-submissions/submissions", {
+      params: {
+        populate: '*',
+      },
+    })
+      .then((res) => {
+        console.log("res: ", res.data);
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+      });
+
+    // console.log("pages: ", pages);
 
     setTodoData(todo);
     setIsLoading(false);

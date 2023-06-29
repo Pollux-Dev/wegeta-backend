@@ -20,10 +20,6 @@
       "maxLength": 26,
       "minLength": 5
     },
-    "publish_at": {
-      "pluginOptions": {},
-      "type": "datetime"
-    },
     "slug": {
       "type": "uid",
       "required": true
@@ -49,6 +45,12 @@
       "type": "richtext",
       "required": true,
       "maxLength": 170
+    },
+    "submissions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::form-submissions.submission",
+      "mappedBy": "form"
     }
   }
 }
