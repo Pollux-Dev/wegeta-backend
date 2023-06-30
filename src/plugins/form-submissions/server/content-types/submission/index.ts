@@ -36,7 +36,7 @@ const schema = {
       type: "relation",
       relation: "manyToOne",
       target: "api::page.page",
-      // inversedBy: "submissions",
+      inversedBy: "submissions",
       configurable: true,
     },
   },

@@ -9,7 +9,14 @@ export default factories.createCoreRouter('plugin::form-submissions.submission',
   config: {
     create: {
       auth: false,
-      // middlewares: [traceIp]
+      middlewares: [
+        (ctx, next) => {
+
+          // console.log('strapi middleware--- ', ctx.res, next)
+
+          return next();
+        },
+      ]
     },
     find: {
       auth: false

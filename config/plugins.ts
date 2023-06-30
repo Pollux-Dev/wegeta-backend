@@ -14,16 +14,6 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  ezforms: {
-    enabed: true,
-    config: {
-      captchaProvider: {
-        name: "none",
-      },
-      notificationProviders: [],
-      enableFormName: true,
-    },
-  },
 
   todo: {
     enabled: true,
@@ -45,13 +35,13 @@ module.exports = ({ env }) => ({
     config: {
       "x-strapi-config": {
         plugins: ["todo", "users-permissions"], // Custom
-      }
+      },
     },
   },
 
-  'form-submissions': {
+  "form-submissions": {
     enabled: true,
-    resolve: './src/plugins/form-submissions'
+    resolve: "./src/plugins/form-submissions",
   },
 
   // ...

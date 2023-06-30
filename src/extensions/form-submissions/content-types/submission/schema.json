@@ -32,7 +32,7 @@
       "type": "json",
       "configurable": false
     },
-    "form": {
+    "form2": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::page.page",

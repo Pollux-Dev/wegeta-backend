@@ -37,9 +37,25 @@ export default {
     };
 
     app.registerPlugin(plugin);
+
+    console.log('app: ', app);
+    app.createHook('My-PLUGIN/MY_HOOK');
+
   },
 
-  bootstrap(app: any) {},
+  bootstrap(app: any) {
+
+    console.log('app bootstrapi:', app)
+
+    app.registerHook('My-PLUGIN/MY_HOOK', (...args : any) => {
+      console.log( ' in submission hook : ', args)
+
+      // important: return the mutated data
+      return args
+    });
+
+
+  },
 
   async registerTrads(app: any) {
     const { locales } = app;
