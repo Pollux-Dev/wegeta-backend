@@ -2,6 +2,12 @@ module.exports = ({ env }) => ({
   // ...
   upload: {
     config: {
+
+    /*  provider: 'local',
+      providerOptions: {
+        // sizeLimit: 100000,
+      },*/
+
       provider: "cloudinary",
       providerOptions: {
         cloud_name: env("CLOUDINARY_NAME"),

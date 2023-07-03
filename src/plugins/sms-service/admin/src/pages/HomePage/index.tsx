@@ -4,7 +4,7 @@
  *
  */
 
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {
   BaseHeaderLayout, Box, ContentLayout, Layout, Tab, TabGroup, TabPanel, TabPanels, Tabs,
 } from "@strapi/design-system";
@@ -13,9 +13,16 @@ import SendSms from "../../components/SendSms";
 import Outbox from "../../components/Outbox";
 
 const HomePage = () => {
-
   const [selectedTab, setSelectedTab] = useState(0);
+  const sendSms = useRef<HTMLElement>(null)
 
+  const setTab = (tab: 1 | 0) => {
+    // setSelectedTab(tab);
+    // click the sendSMS
+    sendSms.current?.click();
+
+    console.log('send sms: ', sendSms.current)
+  };
 
   return (
     <Layout>
@@ -23,29 +30,29 @@ const HomePage = () => {
 
       <ContentLayout>
         <CardWrapper>
-          <Box as={"form"} padding={10} >
-
+          <Box as={"form"} padding={10}>
             <TabGroup
               label="Some stuff for the label"
               id="tabs"
-              onTabChange={(selected : any) => {
-                setSelectedTab(selected)
-                console.log(selected)
+              selectedTabIndex={selectedTab}
+              onTabChange={(selected: any) => {
+                setSelectedTab(selected);
+                console.log(selected);
               }}
             >
-              <Tabs className='tabs'>
-                <Tab className={selectedTab === 0 && 'selected'} >Send SMS</Tab>
-                <Tab className={selectedTab === 1 && 'selected'}>Outbox</Tab>
+              <Tabs className="tabs">
+                <Tab  className={selectedTab === 0 && "selected"}>Send SMS</Tab>
+                <Tab ref={sendSms}  className={selectedTab === 1 && "selected"}>Outbox</Tab>
               </Tabs>
-              <br/>
-              <hr/>
-              <br/>
+              <br />
+              <hr />
+              <br />
               <TabPanels>
                 <TabPanel>
-                  <SendSms/>
+                  <SendSms setTab={setTab} />
                 </TabPanel>
                 <TabPanel>
-                  <Outbox/>
+                  <Outbox />
                 </TabPanel>
               </TabPanels>
             </TabGroup>

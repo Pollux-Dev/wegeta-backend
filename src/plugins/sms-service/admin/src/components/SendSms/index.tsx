@@ -19,7 +19,11 @@ import axios from "axios";
 import { useNotification } from "@strapi/helper-plugin";
 import { useHandleFileUpload } from "../../utils";
 
-const SendSms = () => {
+type PropsType = {
+  setTab: (arg: 1 | 0) => void;
+};
+
+const SendSms = ({ setTab }: PropsType) => {
   const [isLoading, setIsLoading] = useState<any>(false);
   const [messageType, setMessageType] = useState<"sms" | "email">("sms");
   const [formError, setFormError] = useState<Record<string, any>>({});
@@ -44,11 +48,119 @@ const SendSms = () => {
           ".csv, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         multiple: false,
         onChange: handleFileChange,
-        value: "",
         error: undefined,
       };
     }
   };
+
+  function onSend() {
+    return (e: any) => {
+      e.preventDefault();
+
+      if (messageType !== "sms") {
+        return;
+      }
+
+      setFormError({});
+
+      if (!recipient || recipient?.length === 0) {
+        setFormError({
+          recipient: "Recipient filed is required",
+        });
+        return;
+      }
+
+      if (!message) {
+        setFormError({
+          message: "Message Is required",
+        });
+        return;
+      }
+
+      if (recipientType === "single") {
+        console.log("isValid: ", isValidPhoneNumber(recipient as string, "ET"));
+        console.log(
+          "isLength: ",
+          validatePhoneNumberLength(recipient as string, "ET")
+        );
+
+        if (!isValidPhoneNumber(recipient as string, "ET")) {
+          notification({
+            type: "warning",
+            message: {
+              id: "Your error message",
+              defaultMessage:
+                "Incorrect phone number, must start with +251, 9, 09",
+            },
+          });
+
+          return;
+        }
+      }
+
+      setIsLoading(true);
+
+
+
+      const endPoint = recipientType === "single" ? "send_sms" : "send_list";
+      axios
+        .post(
+          `http://197.156.70.196:9095/api/${endPoint}`,
+          {
+            username: "Wegegta30499",
+            password: `!1<.?4!;'*Jl#j*YiEiw7daWk"[Uy`,
+            to: recipient,
+            text: message,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          console.log("response :", res.data);
+
+          // insert into outbox
+
+          // todo
+          // show sucess message
+
+          notification({
+            type: "success",
+            message: {
+              id: "Your error message",
+              defaultMessage: `Your Message has been sent successfully ${
+                recipientType === "single" ? "to" : "for"
+              } ${
+                recipientType === "single"
+                  ? recipient
+                  : `${recipient.length} recipient(s)`
+              }`,
+            },
+          });
+
+          setRecipient("");
+          setMessage("");
+          setIsLoading(false);
+          setTab(1);
+
+          // todo : outbox
+
+        })
+        .catch((err) => {
+          setIsLoading(false);
+
+          notification({
+            type: "warning",
+            message: {
+              id: "Your error message",
+              defaultMessage: "Something went wrong, please try again",
+            },
+          });
+        });
+    };
+  }
 
   return (
     <Box className="box" color="neutral800" padding={4} background="neutral0">
@@ -151,86 +263,7 @@ const SendSms = () => {
         startIcon={<Message />}
         loading={isLoading}
         size="L"
-        onClick={(e: any) => {
-          e.preventDefault();
-
-          if (messageType !== "sms") {
-            return;
-          }
-
-          setFormError({});
-
-          if (!recipient || recipient?.length === 0) {
-            setFormError({
-              recipient: "Recipient filed is required",
-            });
-            return;
-          }
-
-          if (!message) {
-            setFormError({
-              message: "Message Is required",
-            });
-            return;
-          }
-
-          if (recipientType === "single") {
-            console.log(
-              "isValid: ",
-              isValidPhoneNumber(recipient as string, "ET")
-            );
-            console.log(
-              "isLength: ",
-              validatePhoneNumberLength(recipient as string, "ET")
-            );
-
-            if (!isValidPhoneNumber(recipient as string, "ET")) {
-              notification({
-                type: "warning",
-                message: {
-                  id: "Your error message",
-                  defaultMessage:
-                    "Incorrect phone number, must start with +251, 9, 09",
-                },
-              });
-
-              return;
-            }
-          }
-
-          setIsLoading(true);
-
-          const endPoint =
-            recipientType === "single" ? "send_sms" : "send_list";
-          axios
-            .post(
-              `http://197.156.70.196:9095/api/${endPoint}`,
-              {
-                username: "Wegegta30499",
-                password: `!1<.?4!;'*Jl#j*YiEiw7daWk"[Uy`,
-                to: recipient,
-                text: message,
-              },
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            )
-            .then((res) => {
-              console.log("response :", res.data);
-
-              // insert into outbox
-
-              setRecipient("");
-              setMessage("");
-              setIsLoading(false);
-            })
-            .catch((err) => {
-              console.log("error sending: ", err);
-              setIsLoading(false);
-            });
-        }}
+        onClick={onSend()}
       >
         Send SMS
       </Button>
