@@ -2,47 +2,56 @@
  *  service
  */
 
-import { factories } from '@strapi/strapi';
+import { factories } from "@strapi/strapi";
+import FormEvent from "../../admin/src/utils/FormEvent";
 
-export default factories.createCoreService('plugin::form-submissions.submission', ({strapi}) => ({
-  /*async find(...args) {
-    // Calling the default core controller
-    const { results, pagination } = await super.find(...args);
-
-    console.log('create ----> results: ', results, this)
+const formEvent = FormEvent.GetInstance();
 
 
-    // some custom logic
-    // results.forEach(result => {
-    //   result.counter = 1;
-    // });
+export default factories.createCoreService(
+  "plugin::form-submissions.submission",
+  ({ strapi }) => ({
+    async create(entityId, params = {}) {
+      console.log("create ----> entityId: ", entityId, params);
 
-    return { results, pagination };
-  },*/
+      const submission = await strapi.entityService.create(
+        "plugin::form-submissions.submission",
+        entityId
+      );
 
-  async create(entityId, params = {}) {
+      console.log('submission ----> ', submission);
 
-    console.log('create ----> entityId: ', entityId, params)
-
-    const submission = await strapi.entityService.create('plugin::form-submissions.submission', entityId);
-    const updatedForm = await strapi.entityService.update('api::page.page', Number(submission.formId), {
-      data: {
-        submissions: {
-          connect: [
-            {
-              id: submission.id,
-              position: {
-                end: true,
-              },
+      // connect the new form-submission to the corresponding form
+      const updatedForm = await strapi.entityService.update(
+        "api::page.page",
+        submission.formId,
+        {
+          data: {
+            submissions: {
+              connect: [
+                {
+                  id: submission.id,
+                  position: {
+                    end: true,
+                  },
+                },
+              ],
             },
-          ],
+          },
         }
+      );
+
+
+      if (updatedForm){
+        // emit event to update the adimn UI
+        formEvent.emit("submission", submission);
       }
-    });
 
-    // console.log('upaatedForm ----> ', updatedForm)
-    // console.log('submission ----> ', submission)
 
-    return submission;
-  }
-}));
+      console.log('upaatedForm ----> ', updatedForm)
+      console.log('submission ----> ', submission)
+
+      return submission;
+    },
+  })
+);

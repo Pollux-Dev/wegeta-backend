@@ -16,13 +16,21 @@ import {
 import { Plus } from "@strapi/icons";
 import pluginId from "../../pluginId";
 
-export default function TodoTable({
-  todoData,
-  toggleTodo,
-  deleteTodo,
-  editTodo,
-  setShowModal,
-}: any) {
+type Form = {
+  id: string | number;
+  title: string;
+  link: string;
+  publishedAt: string;
+  createdAt: string;
+  submissions: any[];
+};
+
+type PropsType = {
+  formData: Form[];
+  setShowModal: (arg: any) => void;
+};
+
+export default function FormTable({ formData, setShowModal }: PropsType) {
   // navigate to the form submission page
 
   return (
@@ -67,35 +75,35 @@ export default function TodoTable({
         </Thead>
 
         <Tbody>
-          {todoData.map((todo: any) => {
+          {formData.map((form: any) => {
             return (
-              <Tr key={todo.id}>
+              <Tr key={form.id}>
                 <Td>
-                  <Typography textColor="neutral800">{todo.id}</Typography>
+                  <Typography textColor="neutral800">{form.id}</Typography>
                 </Td>
 
                 <Td>
-                  <Typography textColor="neutral800">{todo.title}</Typography>
+                  <Typography textColor="neutral800">{form.title}</Typography>
                 </Td>
 
                 <Td>
-                  <Typography textColor="neutral800">{todo.link}</Typography>
+                  <Typography textColor="neutral800">{form.link}</Typography>
                 </Td>
 
                 <Td>
                   <Typography textColor="neutral800">
-                    {new Date(todo.createdAt).toDateString()}
+                    {new Date(form.createdAt).toDateString()}
                   </Typography>
                 </Td>
 
                 <Td align="right">
                   <LinkButton
                     variant={"success-light"}
-                    to={`/plugins/${pluginId}/submissions/${todo.id}`}
+                    to={`/plugins/${pluginId}/submissions/${form.id}`}
                     as={NavLink}
                   >
                     <Typography textColor="neutral800">
-                      View Submissions : Total {todo.submissions.length}
+                      View Submissions : Total {form.submissions.length}
                     </Typography>
                   </LinkButton>
                 </Td>

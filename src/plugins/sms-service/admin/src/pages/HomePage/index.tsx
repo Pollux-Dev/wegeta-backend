@@ -4,34 +4,11 @@
  *
  */
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
-  BaseHeaderLayout,
-  Box,
-  Button,
-  ContentLayout,
-  Layout,
-  Radio,
-  RadioGroup,
-  Tab,
-  TabGroup,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Textarea,
-  TextInput,
-  Tooltip,
-  Typography,
+  BaseHeaderLayout, Box, ContentLayout, Layout, Tab, TabGroup, TabPanel, TabPanels, Tabs,
 } from "@strapi/design-system";
-import { useNotification } from "@strapi/helper-plugin";
-import { Information, Message } from "@strapi/icons";
-import axios from "axios";
-import {
-  isValidPhoneNumber,
-  validatePhoneNumberLength,
-} from "libphonenumber-js";
-import { useHandleFileUpload } from "../../utils";
-import { CardWrapper, SmsType } from "../../components";
+import {CardWrapper} from "../../components";
 import SendSms from "../../components/SendSms";
 import Outbox from "../../components/Outbox";
 
@@ -43,7 +20,6 @@ const HomePage = () => {
   return (
     <Layout>
       <BaseHeaderLayout title="Compose Message" as="h1" />
-
 
       <ContentLayout>
         <CardWrapper>

@@ -1,6 +1,6 @@
 export default {
   afterCreate: async (event) => {
-    console.log("After create:", event.result);
+    // console.log("After create:", event.result);
 
     const { data } = event.params;
 
@@ -17,12 +17,12 @@ export default {
         },
       }
     );
-    console.log("updated: ", updated);
+    // console.log("updated: ", updated);
   },
 
   async afterUpdate(event) {
     const { data } = event.params;
-    console.log("afterUpdate : ", event);
+    // console.log("afterUpdate : ", event);
     if (event.result?.link) {
       return;
     }
@@ -41,6 +41,6 @@ export default {
       }
     );
 
-    console.log("updated data --> : ", updated);
+    // console.log("updated data --> : ", updated);
   },
 };

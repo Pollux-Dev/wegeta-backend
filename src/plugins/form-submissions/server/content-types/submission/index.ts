@@ -1,3 +1,5 @@
+import { Schema } from "@strapi/strapi/lib/types/core/schemas";
+
 const schema = {
   kind: "collectionType",
   collectionName: "submissions",
@@ -13,10 +15,10 @@ const schema = {
   pluginOptions: {
     timestamps: true,
     "content-manager": {
-      visible: false,
+      visible: true,
     },
     "content-type-builder": {
-      visible: false,
+      visible: true,
     },
   },
   attributes: {
@@ -25,12 +27,16 @@ const schema = {
       configurable: false,
     },
     formId: {
-      type: "string",
+      type: "integer",
       configurable: false,
     },
     formData: {
       type: "json",
       configurable: false,
+    },
+    seen: {
+      type: "boolean",
+      default: false,
     },
     form: {
       type: "relation",
@@ -40,6 +46,5 @@ const schema = {
       configurable: true,
     },
   },
-};
-
+} as Partial<Schema>;
 export default { schema };

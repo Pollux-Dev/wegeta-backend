@@ -30,8 +30,8 @@ export default {
       maxLength: 40,
     },
     timeAllocated: {
-      type: 'time',
-      default: '00:00:00',
+      type: "time",
+      default: "00:00:00",
     },
     isDone: {
       type: "boolean",
