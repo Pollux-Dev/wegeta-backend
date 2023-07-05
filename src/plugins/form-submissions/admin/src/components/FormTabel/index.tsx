@@ -75,7 +75,7 @@ export default function FormTable({ formData, setShowModal }: PropsType) {
         </Thead>
 
         <Tbody>
-          {formData.map((form: any) => {
+          s{formData.map((form: any) => {
             return (
               <Tr key={form.id}>
                 <Td>

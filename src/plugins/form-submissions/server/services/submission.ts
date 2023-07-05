@@ -14,6 +14,7 @@ export default factories.createCoreService(
     async create(entityId, params = {}) {
       console.log("create ----> entityId: ", entityId, params);
 
+
       const submission = await strapi.entityService.create(
         "plugin::form-submissions.submission",
         entityId

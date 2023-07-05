@@ -4,6 +4,9 @@ export const Entry = styled.div`
   padding: 0.5rem;
   max-width: max-content;
   //border: 1px solid #000;
+
+  .file_link {
+  }
 `;
 
 export const Content = styled.div`

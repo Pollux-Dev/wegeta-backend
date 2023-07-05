@@ -55,7 +55,9 @@ const HomePage = () => {
 
     console.log("forms: ", formsWithSubmission);
 
-    setFormData(formsWithSubmission);
+    if (formsWithSubmission && Array.isArray(formsWithSubmission)) {
+      setFormData(formsWithSubmission);
+    }
     setIsLoading(false);
   };
 
