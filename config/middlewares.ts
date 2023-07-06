@@ -1,12 +1,12 @@
 export default [
   'strapi::errors',
-  /*{
+  {
     name: 'strapi::security',
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:'],
+          'connect-src': ["'self'", 'https:', 'http:' ],
           'script-src': ["'self'", "'unsafe-inline'", 'cdn.jsdelivr.net'],
           'img-src': ["'self'", 'data:', 'blob:', 'strapi.io', 'res.cloudinary.com', 'https://market-assets.strapi.io/', ],
           'style-src': ["'self'", '*', 'data:', 'blob:', "'unsafe-inline'", 'strapi.io', 'http://cdn.jsdelivr.net', ],
@@ -15,7 +15,7 @@ export default [
         },
       },
     },
-  },*/
+  },
   'strapi::security',
 
   'strapi::cors',

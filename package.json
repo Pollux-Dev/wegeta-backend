@@ -17,6 +17,7 @@
   "version": "0.1.0",
   "description": "A Strapi application",
   "scripts": {
+    "predev": "bash ./build-plugins.sh",
     "develop": "strapi develop",
     "dev": "strapi develop",
     "start": "strapi start",

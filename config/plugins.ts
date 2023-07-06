@@ -28,11 +28,6 @@ module.exports = ({ env }) => ({
     },
   },
 
-  todo: {
-    enabled: true,
-    resolve: "./src/plugins/todo",
-  },
-
   "generated-page-link": {
     enabled: true,
     resolve: "./src/plugins/generated-page-link",
@@ -41,15 +36,6 @@ module.exports = ({ env }) => ({
   "sms-service": {
     enabled: true,
     resolve: "./src/plugins/sms-service",
-  },
-
-  documentation: {
-    enabled: false,
-    config: {
-      "x-strapi-config": {
-        plugins: ["todo", "users-permissions"], // Custom
-      },
-    },
   },
 
   "form-submissions": {

@@ -12,6 +12,12 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "link": {
+      "type": "customField",
+      "customField": "plugin::generated-page-link.page-link",
+      "required": false
+    },
+
     "title": {
       "pluginOptions": {},
       "type": "string",
@@ -20,10 +26,13 @@
       "maxLength": 26,
       "minLength": 5
     },
-    "slug": {
-      "type": "uid",
-      "required": true
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "maxLength": 170
     },
+
+
     "form": {
       "type": "dynamiczone",
       "components": [
@@ -36,16 +45,13 @@
       "required": true,
       "min": 1
     },
-    "link": {
-      "type": "customField",
-      "customField": "plugin::generated-page-link.page-link",
-      "required": false
+
+
+    "slug": {
+      "type": "uid",
+      "required": true
     },
-    "description": {
-      "type": "richtext",
-      "required": true,
-      "maxLength": 170
-    },
+
     "submissions": {
       "type": "relation",
       "relation": "oneToMany",
