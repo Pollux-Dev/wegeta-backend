@@ -17,7 +17,6 @@
       "customField": "plugin::generated-page-link.page-link",
       "required": false
     },
-
     "title": {
       "pluginOptions": {},
       "type": "string",
@@ -31,8 +30,6 @@
       "required": true,
       "maxLength": 170
     },
-
-
     "form": {
       "type": "dynamiczone",
       "components": [
@@ -40,18 +37,16 @@
         "form.select",
         "form.textfield",
         "form.file-uploader",
-        "form.radiobox"
+        "form.radiobox",
+        "form.agreement"
       ],
       "required": true,
       "min": 1
     },
-
-
     "slug": {
       "type": "uid",
       "required": true
     },
-
     "submissions": {
       "type": "relation",
       "relation": "oneToMany",

@@ -16,21 +16,22 @@
       ],
       "required": true
     },
-    "label": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.label-20-max-char",
-      "required": true
-    },
-    "name": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.label-20-max-no-space",
-      "required": true
-    },
     "required": {
       "type": "boolean",
       "default": false
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "regex": "^[a-zA-Z]+$",
+      "minLength": 2
+    },
+    "label": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "minLength": 2
     }
   }
 }

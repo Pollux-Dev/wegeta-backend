@@ -37,6 +37,12 @@
       "relation": "manyToOne",
       "target": "api::page.page",
       "inversedBy": "submissions"
+    },
+    "form": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::page.page",
+      "inversedBy": "submissions"
     }
   }
 }

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_form_checkbox_singles",
+  "info": {
+    "displayName": "Agreement",
+    "icon": "check",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "required": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "regex": "^[a-zA-Z]+$",
+      "required": true,
+      "minLength": 2,
+      "unique": false
+    }
+  }
+}

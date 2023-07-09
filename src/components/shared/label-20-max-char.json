@@ -1,7 +1,7 @@
 {
   "collectionName": "components_shared_label_20_max_char_s",
   "info": {
-    "displayName": "Label(20 max-char)",
+    "displayName": "Label(60 max-char)",
     "icon": "bulletList",
     "description": ""
   },
@@ -9,7 +9,7 @@
   "attributes": {
     "text": {
       "type": "string",
-      "maxLength": 20,
+      "maxLength": 60,
       "minLength": 5,
       "required": true
     }

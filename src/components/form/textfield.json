@@ -21,25 +21,26 @@
       "type": "string",
       "maxLength": 15
     },
-    "label": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.label-20-max-char",
-      "required": true
-    },
     "multiline": {
       "type": "boolean",
       "default": false
     },
-    "name": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.label-20-max-no-space",
-      "required": true
-    },
     "required": {
       "type": "boolean",
       "default": false
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "minLength": 2,
+      "regex": "^[a-zA-Z]+$"
+    },
+    "label": {
+      "type": "string",
+      "required": true,
+      "unique": false,
+      "minLength": 2
     }
   }
 }
