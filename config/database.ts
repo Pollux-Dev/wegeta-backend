@@ -1,11 +1,9 @@
 import path from "path";
 
-let i; //
-
 export default ({ env }) => {
-  const client = env("DATABASE_CLIENT", "postgres");
-  const host = env("DATABASE_HOST_INTERNAL", "postgres");
-  console.log("THIS IS THE HOST ------- : ", host);
+  const client = env("DATABASE_CLIENT", "sqlite");
+  // const host = env("DATABASE_HOST_INTERNAL", "postgres");
+  console.log("THIS IS THE DATABASE CLIENT ------- : ", client);
 
   const connections = {
     postgres: {
