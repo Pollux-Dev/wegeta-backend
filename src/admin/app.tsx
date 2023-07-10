@@ -1,5 +1,11 @@
 export default {
   config: {
+    translations: {
+      en: {
+        // 'app.components.LeftMenu.navbrand.title': 'Custom name',
+        'app.components.LeftMenu.navbrand.title': 'Wegegta Dashboard'
+      }
+    },
     locales: [
       // 'ar',
       // 'fr',
