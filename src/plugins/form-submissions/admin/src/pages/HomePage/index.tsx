@@ -34,7 +34,7 @@ const HomePage = () => {
       .then((res) => {
         if (res.status !== 200) throw new Error("Failed to fetch pages");
 
-        // console.log("forms ----  : ", res.data.data);
+        console.log("forms ----  : ", res.data.data);
 
         return res.data.data
           .filter(

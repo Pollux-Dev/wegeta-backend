@@ -13,7 +13,7 @@ export default {
       event.result.id,
       {
         data: {
-          link: `localhost:3000/forms/${event.result.id}`,
+          link: process.env.FORM_URL ? `${process.env.FORM_URL}/${event.result.id}` : `localhost:3000/forms/${event.result.id}`,
         },
       }
     );
