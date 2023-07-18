@@ -6,6 +6,7 @@ for plugin in ./src/plugins/*; do
   if [ -f "$plugin/package.json" ] && [ -f "$plugin/yarn.lock" ]; then
     cd "$plugin" || exit
     echo "Building $plugin..."
+    yarn install
     yarn build
     cd "$orig_dir" || exit
   fi

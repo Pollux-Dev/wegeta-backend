@@ -20,6 +20,7 @@
     "develop": "strapi develop",
     "dev": "strapi develop",
     "start": "strapi start",
+    "prebuild": "bash ./build-plugins.sh",
     "build": "strapi build",
     "strapi": "strapi"
   },
